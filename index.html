@@ -149,6 +149,24 @@
             alert(agree ? "Вы согласились!" : "Вы не согласны!");
         }
     </script>
+<script>
+    function logMessage(msg) {
+        document.getElementById('log').innerText += msg + "\n";
+    }
 
+    if (window.Telegram?.WebApp) {
+    logMessage("✅ Web App работает в Telegram");
+    Telegram.WebApp.expand();
+    if (Telegram.WebApp.requestFullscreen) {
+        Telegram.WebApp.requestFullscreen();
+        Telegram.WebApp.disableVerticalSwipes();
+        Telegram.WebApp.lockOrientation()();
+    } else {
+        logMessage("❌ requestFullscreen() не поддерживается");
+    }
+} else {
+    logMessage("❌ Открыто не через Telegram Web App");
+}
+</script>
 </body>
 </html>
