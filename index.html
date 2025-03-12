@@ -161,7 +161,7 @@
     if (Telegram.WebApp.requestFullscreen) {
         Telegram.WebApp.requestFullscreen();
         Telegram.WebApp.disableVerticalSwipes();
-        Telegram.WebApp.lockOrientation()();
+        Telegram.WebApp.lockOrientation();
     } else {
         logMessage("❌ requestFullscreen() не поддерживается");
     }
