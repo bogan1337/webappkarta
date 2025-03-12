@@ -128,10 +128,10 @@
                 clearTimeout(dragTimeout);
                 dragTimeout = setTimeout(() => {
                     isDragging = false;
-                }, 1000); // 100 мс задержка после остановки движения
+                }, 100); // 100 мс задержка после остановки движения
             }
             map.on('zoomend', startDragDetection);
-            
+
             map.on('click', function (e) {
                 if (!isDragging) { // Если не двигали карту, ставим метку
                     tempCoords = [e.latlng.lat, e.latlng.lng];
@@ -169,7 +169,7 @@
         }
 
         if (window.Telegram?.WebApp) {
-        logMessage("0.44");
+        logMessage("0.45");
         Telegram.WebApp.expand();
         if (Telegram.WebApp.requestFullscreen) {
             Telegram.WebApp.requestFullscreen();
