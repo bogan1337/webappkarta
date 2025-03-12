@@ -47,8 +47,10 @@
         <div id="map"></div>
         <script>
             if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-    Telegram.WebApp.expand();
+    Telegram.WebApp.ready();  // Ждём загрузки WebApp
+    Telegram.WebApp.expand(); // Разворачиваем на весь экран
 }
+
 
         var map;
         DG.then(function () {
