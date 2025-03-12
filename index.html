@@ -128,7 +128,7 @@
                 clearTimeout(dragTimeout);
                 dragTimeout = setTimeout(() => {
                     isDragging = false;
-                }, 100); // 100 мс задержка после остановки движения
+                }, 1000); // 100 мс задержка после остановки движения
             }
             map.on('mousemove', startDragDetection);
 
@@ -171,7 +171,7 @@
         }
 
         if (window.Telegram?.WebApp) {
-        logMessage("0.42");
+        logMessage("0.43");
         Telegram.WebApp.expand();
         if (Telegram.WebApp.requestFullscreen) {
             Telegram.WebApp.requestFullscreen();
