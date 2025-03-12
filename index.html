@@ -130,8 +130,10 @@
                     isDragging = false;
                 }, 100); // 100 мс задержка после остановки движения
             }
+            map.on('zoomstart', function () {
+                isDragging = true;
+            });
             map.on('zoomend', startDragDetection);
-
             map.on('click', function (e) {
                 if (!isDragging) { // Если не двигали карту, ставим метку
                     tempCoords = [e.latlng.lat, e.latlng.lng];
