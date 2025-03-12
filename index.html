@@ -7,18 +7,27 @@
     <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #222; /* Темно-серый фон */
+            display: flex;
+            justify-content: center; /* Центрируем карту по горизонтали */
+            align-items: center; /* Центрируем карту по вертикали */
+        }
 
         /* Контейнер для карты */
         #map-container {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden; /* Запрещает прокрутку страницы */
+            width: 80vw;  /* Ширина 80% от экрана */
+            height: 60vh; /* Высота 60% от экрана */
+            border-radius: 15px; /* Закругленные углы */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Легкая подсветка */
+            overflow: hidden; /* Чтобы карта не выходила за границы */
         }
 
         #map {
-            width: 100%;
-            height: 100%; /* Делаем карту внутри контейнера */
+            height: 100%;
         }
 
         .balloon {
@@ -98,18 +107,19 @@
         document.getElementById('log').innerText += msg + "\n";
     }
 
-    if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-        logMessage("✅ Web App работает в Telegram");
-        Telegram.WebApp.expand();
+    if (window.Telegram?.WebApp) {
+    logMessage("✅ Web App работает в Telegram");
+    Telegram.WebApp.expand();
+    if (Telegram.WebApp.requestFullscreen) {
+        Telegram.WebApp.requestFullscreen();
+        Telegram.WebApp.disableVerticalSwipes();
     } else {
-        logMessage("❌ Открыто не через Telegram Web App");
+        logMessage("❌ requestFullscreen() не поддерживается");
     }
-    if (window.Telegram?.WebApp?.requestFullscreen) {
-    Telegram.WebApp.requestFullscreen();
-    Telegram.WebApp.disableVerticalSwipes();
 } else {
-        logMessage("❌ requestFullscreen() не поддерживается")
+    logMessage("❌ Открыто не через Telegram Web App");
 }
+
 
 </script>
 
