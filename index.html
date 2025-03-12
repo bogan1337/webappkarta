@@ -123,13 +123,17 @@
             });
             let dragTimeout;
             let isDragging = false; // Флаг для отслеживания перемещения карты
-            map.on('mousemove', function () {
-                isDragging = true; // Фиксируем, что карта двигалась
-                clearTimeout(dragTimeout); // Сбрасываем старый таймер
+            function startDragDetection() {
+                isDragging = true;
+                clearTimeout(dragTimeout);
                 dragTimeout = setTimeout(() => {
-                    isDragging = false; // Через 100 мс снова разрешаем клик
-                }, 100);
-            });
+                    isDragging = false;
+                }, 100); // 100 мс задержка после остановки движения
+            }
+            map.on('mousemove', startDragDetection);
+
+            // Для мобильных устройств
+            map.on('touchmove', startDragDetection);
 
             map.on('click', function (e) {
                 if (!isDragging) { // Если не двигали карту, ставим метку
@@ -167,7 +171,7 @@
         }
 
         if (window.Telegram?.WebApp) {
-        logMessage("✅ Web App работает в Telegram");
+        logMessage("0.42");
         Telegram.WebApp.expand();
         if (Telegram.WebApp.requestFullscreen) {
             Telegram.WebApp.requestFullscreen();
