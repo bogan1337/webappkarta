@@ -130,17 +130,15 @@
                     isDragging = false;
                 }, 1000); // 100 мс задержка после остановки движения
             }
-            map.on('mousemove', startDragDetection);
-
-            // Для мобильных устройств
-            map.on('touchmove', startDragDetection);
-
+            map.on('zoomend', startDragDetection);
+            
             map.on('click', function (e) {
                 if (!isDragging) { // Если не двигали карту, ставим метку
                     tempCoords = [e.latlng.lat, e.latlng.lng];
                     openModal();
                 }
             });
+
         });
 
         function openModal() {
@@ -171,7 +169,7 @@
         }
 
         if (window.Telegram?.WebApp) {
-        logMessage("0.43");
+        logMessage("0.44");
         Telegram.WebApp.expand();
         if (Telegram.WebApp.requestFullscreen) {
             Telegram.WebApp.requestFullscreen();
