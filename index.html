@@ -92,17 +92,6 @@
         });
     </script>
     </div>
-<script>
-    if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
-    }
-    if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-    console.log("Web App работает в Telegram");
-} else {
-    console.log("Сайт открыт не через Telegram Web App");
-}
-</script>
 <div id="log" style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; font-size: 12px;"></div>
 <script>
     function logMessage(msg) {
@@ -115,10 +104,9 @@
     } else {
         logMessage("❌ Открыто не через Telegram Web App");
     }
-    logMessage("Telegram объект:", window.Telegram)
-    logMessage("Telegram.WebApp объект:", window.Telegram?.WebApp)
     if (window.Telegram?.WebApp?.requestFullscreen) {
     Telegram.WebApp.requestFullscreen();
+    Telegram.WebApp.disableVerticalSwipes();
 } else {
         logMessage("❌ requestFullscreen() не поддерживается")
 }
