@@ -46,6 +46,10 @@
     <div id="map-container">
         <div id="map"></div>
         <script>
+            if (typeof Telegram !== "undefined" && Telegram.WebApp) {
+    Telegram.WebApp.expand();
+}
+
         var map;
         DG.then(function () {
             map = DG.map('map', {
